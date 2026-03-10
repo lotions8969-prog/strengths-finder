@@ -4,7 +4,7 @@ export const themes: StrengthTheme[] = [
   // === Executing (実行力) ===
   {
     id: 'achiever',
-    name: 'アチーバー',
+    name: '達成力',
     nameEn: 'Achiever',
     domain: 'executing',
     hexColor: '#7c3aed',
@@ -14,7 +14,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'arranger',
-    name: 'アレンジャー',
+    name: '調整力',
     nameEn: 'Arranger',
     domain: 'executing',
     hexColor: '#7c3aed',
@@ -24,7 +24,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'belief',
-    name: 'ビリーフ',
+    name: '信念',
     nameEn: 'Belief',
     domain: 'executing',
     hexColor: '#7c3aed',
@@ -34,7 +34,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'consistency',
-    name: 'コンシステンシー',
+    name: '公平性',
     nameEn: 'Consistency',
     domain: 'executing',
     hexColor: '#7c3aed',
@@ -44,7 +44,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'deliberative',
-    name: 'デリバレイティブ',
+    name: '慎重性',
     nameEn: 'Deliberative',
     domain: 'executing',
     hexColor: '#7c3aed',
@@ -54,7 +54,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'discipline',
-    name: 'ディシプリン',
+    name: '規律性',
     nameEn: 'Discipline',
     domain: 'executing',
     hexColor: '#7c3aed',
@@ -64,7 +64,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'focus',
-    name: 'フォーカス',
+    name: '集中力',
     nameEn: 'Focus',
     domain: 'executing',
     hexColor: '#7c3aed',
@@ -74,7 +74,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'responsibility',
-    name: 'レスポンシビリティ',
+    name: '責任感',
     nameEn: 'Responsibility',
     domain: 'executing',
     hexColor: '#7c3aed',
@@ -84,7 +84,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'restorative',
-    name: 'リストレイティブ',
+    name: '回復志向',
     nameEn: 'Restorative',
     domain: 'executing',
     hexColor: '#7c3aed',
@@ -95,7 +95,7 @@ export const themes: StrengthTheme[] = [
   // === Influencing (影響力) ===
   {
     id: 'activator',
-    name: 'アクティベーター',
+    name: '活発性',
     nameEn: 'Activator',
     domain: 'influencing',
     hexColor: '#ea580c',
@@ -105,7 +105,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'command',
-    name: 'コマンド',
+    name: '指令性',
     nameEn: 'Command',
     domain: 'influencing',
     hexColor: '#ea580c',
@@ -115,7 +115,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'communication',
-    name: 'コミュニケーション',
+    name: '伝達力',
     nameEn: 'Communication',
     domain: 'influencing',
     hexColor: '#ea580c',
@@ -125,7 +125,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'competition',
-    name: 'コンペティション',
+    name: '競争性',
     nameEn: 'Competition',
     domain: 'influencing',
     hexColor: '#ea580c',
@@ -135,7 +135,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'maximizer',
-    name: 'マキシマイザー',
+    name: '最上志向',
     nameEn: 'Maximizer',
     domain: 'influencing',
     hexColor: '#ea580c',
@@ -145,7 +145,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'selfAssurance',
-    name: 'セルフアシュアランス',
+    name: '自己確信',
     nameEn: 'Self-Assurance',
     domain: 'influencing',
     hexColor: '#ea580c',
@@ -155,7 +155,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'significance',
-    name: 'シグニフィカンス',
+    name: '自己重要感',
     nameEn: 'Significance',
     domain: 'influencing',
     hexColor: '#ea580c',
@@ -165,7 +165,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'woo',
-    name: 'ウー',
+    name: '社交性',
     nameEn: 'Woo',
     domain: 'influencing',
     hexColor: '#ea580c',
@@ -176,7 +176,7 @@ export const themes: StrengthTheme[] = [
   // === Relationship Building (人間関係構築力) ===
   {
     id: 'adaptability',
-    name: 'アダプタビリティ',
+    name: '適応性',
     nameEn: 'Adaptability',
     domain: 'relationship',
     hexColor: '#16a34a',
@@ -186,7 +186,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'connectedness',
-    name: 'コネクテッドネス',
+    name: '運命思考',
     nameEn: 'Connectedness',
     domain: 'relationship',
     hexColor: '#16a34a',
@@ -196,7 +196,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'developer',
-    name: 'デベロッパー',
+    name: '成長促進',
     nameEn: 'Developer',
     domain: 'relationship',
     hexColor: '#16a34a',
@@ -206,7 +206,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'empathy',
-    name: 'エンパシー',
+    name: '共感性',
     nameEn: 'Empathy',
     domain: 'relationship',
     hexColor: '#16a34a',
@@ -216,7 +216,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'harmony',
-    name: 'ハーモニー',
+    name: '調和性',
     nameEn: 'Harmony',
     domain: 'relationship',
     hexColor: '#16a34a',
@@ -226,7 +226,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'includer',
-    name: 'インクルーダー',
+    name: '包含',
     nameEn: 'Includer',
     domain: 'relationship',
     hexColor: '#16a34a',
@@ -236,7 +236,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'individualization',
-    name: 'インディビジュアライゼーション',
+    name: '個別化',
     nameEn: 'Individualization',
     domain: 'relationship',
     hexColor: '#16a34a',
@@ -246,7 +246,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'positivity',
-    name: 'ポジティビティ',
+    name: 'ポジティブ',
     nameEn: 'Positivity',
     domain: 'relationship',
     hexColor: '#16a34a',
@@ -256,7 +256,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'relator',
-    name: 'リレーター',
+    name: '親密性',
     nameEn: 'Relator',
     domain: 'relationship',
     hexColor: '#16a34a',
@@ -267,7 +267,7 @@ export const themes: StrengthTheme[] = [
   // === Strategic Thinking (戦略的思考力) ===
   {
     id: 'analytical',
-    name: 'アナリティカル',
+    name: '分析思考',
     nameEn: 'Analytical',
     domain: 'thinking',
     hexColor: '#2563eb',
@@ -277,7 +277,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'context',
-    name: 'コンテクスト',
+    name: '原点思考',
     nameEn: 'Context',
     domain: 'thinking',
     hexColor: '#2563eb',
@@ -287,7 +287,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'futuristic',
-    name: 'フューチャリスティック',
+    name: '未来志向',
     nameEn: 'Futuristic',
     domain: 'thinking',
     hexColor: '#2563eb',
@@ -297,7 +297,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'ideation',
-    name: 'アイデエーション',
+    name: '着想',
     nameEn: 'Ideation',
     domain: 'thinking',
     hexColor: '#2563eb',
@@ -307,7 +307,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'input',
-    name: 'インプット',
+    name: '収集心',
     nameEn: 'Input',
     domain: 'thinking',
     hexColor: '#2563eb',
@@ -317,7 +317,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'intellection',
-    name: 'インテレクション',
+    name: '内省',
     nameEn: 'Intellection',
     domain: 'thinking',
     hexColor: '#2563eb',
@@ -327,7 +327,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'learner',
-    name: 'ラーナー',
+    name: '学習欲',
     nameEn: 'Learner',
     domain: 'thinking',
     hexColor: '#2563eb',
@@ -337,7 +337,7 @@ export const themes: StrengthTheme[] = [
   },
   {
     id: 'strategic',
-    name: 'ストラテジック',
+    name: '戦略性',
     nameEn: 'Strategic',
     domain: 'thinking',
     hexColor: '#2563eb',
