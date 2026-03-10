@@ -6,7 +6,7 @@ import { loadResults } from '@/lib/storage';
 import { clearAll } from '@/lib/storage';
 import { AssessmentResults, ThemeScore } from '@/types';
 import { themes, domainInfo } from '@/data/themes';
-import { Trophy, RotateCcw, ChevronDown, ChevronUp, Share2 } from 'lucide-react';
+import { Trophy, RotateCcw, ChevronDown, ChevronUp, Share2, Users } from 'lucide-react';
 
 function ScoreBar({ score, color, animate, delay }: { score: number; color: string; animate: boolean; delay: number }) {
   const [width, setWidth] = useState(0);
@@ -34,6 +34,8 @@ export default function ResultsPage() {
   const [showAll, setShowAll] = useState(false);
   const [animated, setAnimated] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     const r = loadResults();
@@ -43,6 +45,20 @@ export default function ResultsPage() {
     }
     setResults(r);
     setTimeout(() => setAnimated(true), 100);
+
+    // 結果をサーバーに保存
+    const id = localStorage.getItem('sf_user_id');
+    const name = localStorage.getItem('sf_user_name') || '';
+    setUserName(name);
+
+    if (id && name && !saved) {
+      fetch('/api/members', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, name, scores: r.scores, completedAt: r.completedAt }),
+      }).then(() => setSaved(true)).catch(() => {});
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
   if (!results) {
@@ -91,15 +107,25 @@ export default function ResultsPage() {
             <Trophy size={32} className="text-yellow-900" />
           </div>
         </div>
-        <h1 className="mb-2 text-3xl font-bold text-white">診断結果</h1>
+        {userName && (
+          <p className="mb-1 text-lg font-bold text-white">{userName} さんの診断結果</p>
+        )}
+        <h1 className="mb-2 text-3xl font-bold text-white">Top 5 強みテーマ</h1>
         <p className="text-white/50 text-sm">{completedDate}に診断完了</p>
-        <div className="mt-6 flex justify-center gap-3">
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
           <button
             onClick={handleShare}
             className="flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm hover:bg-white/20 transition-colors"
           >
             <Share2 size={16} />
             {copied ? 'コピーしました！' : '結果をシェア'}
+          </button>
+          <button
+            onClick={() => router.push('/members')}
+            className="flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm hover:bg-white/20 transition-colors"
+          >
+            <Users size={16} />
+            メンバーを見る
           </button>
           <button
             onClick={handleRestart}

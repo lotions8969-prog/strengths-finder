@@ -29,6 +29,13 @@ export default function AssessmentPage() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // 名前未登録なら登録ページへ
+    const userName = localStorage.getItem('sf_user_name');
+    if (!userName) {
+      router.push('/register');
+      return;
+    }
+
     const savedOrder = loadQuestionOrder();
     const savedAnswers = loadAnswers();
 
@@ -50,7 +57,7 @@ export default function AssessmentPage() {
     }
 
     setMounted(true);
-  }, []);
+  }, [router]);
 
   const currentQuestion = orderedIds[currentIndex]
     ? questions.find((q) => q.id === orderedIds[currentIndex])

@@ -1,9 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { clearAll } from '@/lib/storage';
 import { domainInfo } from '@/data/themes';
-import { Zap, TrendingUp, Heart, Brain, ChevronRight, Star } from 'lucide-react';
+import { Zap, TrendingUp, Heart, Brain, ChevronRight, Star, Users } from 'lucide-react';
 
 const domainIcons = {
   executing: Zap,
@@ -14,11 +13,6 @@ const domainIcons = {
 
 export default function HomePage() {
   const router = useRouter();
-
-  const handleStart = () => {
-    clearAll();
-    router.push('/assessment');
-  };
 
   return (
     <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)' }}>
@@ -42,14 +36,24 @@ export default function HomePage() {
           68の質問に答えることで、あなたの才能と強みのパターンを分析します。
         </p>
 
-        <button
-          onClick={handleStart}
-          className="group flex items-center gap-3 rounded-full px-10 py-5 text-xl font-bold text-white shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-purple-500/30 animate-fade-in-up"
-          style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)' }}
-        >
-          診断を始める
-          <ChevronRight size={24} className="transition-transform group-hover:translate-x-1" />
-        </button>
+        <div className="flex flex-col items-center gap-4 sm:flex-row animate-fade-in-up">
+          <button
+            onClick={() => router.push('/register')}
+            className="group flex items-center gap-3 rounded-full px-10 py-5 text-xl font-bold text-white shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-purple-500/30"
+            style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)' }}
+          >
+            診断を始める
+            <ChevronRight size={24} className="transition-transform group-hover:translate-x-1" />
+          </button>
+
+          <button
+            onClick={() => router.push('/members')}
+            className="group flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-8 py-5 text-lg font-medium text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
+          >
+            <Users size={22} />
+            メンバーの強みを見る
+          </button>
+        </div>
 
         {/* Stats */}
         <div className="mt-12 flex flex-wrap justify-center gap-8 text-center animate-fade-in">
@@ -96,9 +100,9 @@ export default function HomePage() {
         <h2 className="mb-8 text-2xl font-bold text-white">診断の流れ</h2>
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-8">
           {[
-            { step: '01', text: '各質問を1〜5で評価' },
-            { step: '02', text: '68問すべてに回答' },
-            { step: '03', text: 'Top 5強みテーマを確認' },
+            { step: '01', text: '名前を入力' },
+            { step: '02', text: '68問に1〜5で回答' },
+            { step: '03', text: 'Top 5強みを確認・共有' },
           ].map((item, i) => (
             <div key={i} className="flex flex-col items-center gap-2">
               <div
