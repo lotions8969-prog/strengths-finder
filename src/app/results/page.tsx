@@ -157,56 +157,70 @@ export default function ResultsPage() {
                   opacity: animated ? 1 : 0,
                   transform: animated ? 'translateY(0)' : 'translateY(20px)',
                   transition: `opacity 0.5s ease ${delay}ms, transform 0.5s ease ${delay}ms`,
+                  borderLeft: `4px solid ${theme.hexColor}`,
                 }}
               >
-                <div className="flex items-start gap-4 p-6">
-                  {/* Rank */}
+                {/* Card header */}
+                <div className="flex items-center gap-4 px-6 pt-6 pb-4">
                   <div
-                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl font-bold text-white shadow-md"
+                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-bold text-white shadow-md"
                     style={{ backgroundColor: theme.hexColor }}
                   >
                     {index + 1}
                   </div>
-
-                  {/* Content */}
                   <div className="flex-1 min-w-0">
-                    <div className="mb-1 flex flex-wrap items-center gap-2">
-                      <h3 className="text-lg font-bold text-slate-800">{theme.name}</h3>
+                    <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                      <h3 className="text-xl font-bold text-slate-800">{theme.name}</h3>
                       <span className="text-sm text-slate-400">{theme.nameEn}</span>
-                      <span
-                        className="rounded-full px-2 py-0.5 text-xs font-medium text-white"
-                        style={{ backgroundColor: domain.hexColor }}
-                      >
-                        {domain.name}
-                      </span>
                     </div>
-
-                    {/* Score bar */}
-                    <div className="mb-3">
-                      <ScoreBar
-                        score={score.normalizedScore}
-                        color={theme.hexColor}
-                        animate={animated}
-                        delay={delay + 300}
-                      />
-                    </div>
-
-                    {/* Keywords */}
-                    <div className="mb-3 flex flex-wrap gap-1.5">
-                      {theme.keywords.map((kw) => (
-                        <span
-                          key={kw}
-                          className="rounded-full px-2.5 py-0.5 text-xs font-medium"
-                          style={{ backgroundColor: theme.hexColor + '1a', color: theme.hexColor }}
-                        >
-                          {kw}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-sm leading-relaxed text-slate-600">{theme.detailDescription}</p>
+                    <span
+                      className="rounded-full px-2.5 py-0.5 text-xs font-medium text-white"
+                      style={{ backgroundColor: domain.hexColor }}
+                    >
+                      {domain.name}
+                    </span>
                   </div>
+                </div>
+
+                {/* Score bar */}
+                <div className="px-6 pb-4">
+                  <div className="flex items-center gap-3 mb-1">
+                    <ScoreBar
+                      score={score.normalizedScore}
+                      color={theme.hexColor}
+                      animate={animated}
+                      delay={delay + 300}
+                    />
+                    <span className="text-xs font-mono text-slate-400 shrink-0">{score.normalizedScore}%</span>
+                  </div>
+                </div>
+
+                {/* Keywords */}
+                <div className="px-6 pb-4 flex flex-wrap gap-1.5">
+                  {theme.keywords.map((kw) => (
+                    <span
+                      key={kw}
+                      className="rounded-full px-3 py-1 text-xs font-medium"
+                      style={{ backgroundColor: theme.hexColor + '1a', color: theme.hexColor }}
+                    >
+                      {kw}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Short description */}
+                <div className="px-6 pb-3">
+                  <p className="text-sm font-medium text-slate-700 italic">「{theme.description}」</p>
+                </div>
+
+                {/* Detail description */}
+                <div
+                  className="mx-4 mb-6 rounded-xl p-5"
+                  style={{ backgroundColor: theme.hexColor + '0d' }}
+                >
+                  <p className="text-sm leading-7 text-slate-700 whitespace-pre-line">
+                    {theme.detailDescription}
+                  </p>
                 </div>
               </div>
             );
