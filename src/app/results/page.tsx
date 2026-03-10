@@ -6,7 +6,7 @@ import { loadResults } from '@/lib/storage';
 import { clearAll } from '@/lib/storage';
 import { AssessmentResults, ThemeScore } from '@/types';
 import { themes, domainInfo } from '@/data/themes';
-import { Trophy, RotateCcw, ChevronDown, ChevronUp, Share2, Users } from 'lucide-react';
+import { Trophy, RotateCcw, ChevronDown, ChevronUp, Share2, Users, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 
 function ScoreBar({ score, color, animate, delay }: { score: number; color: string; animate: boolean; delay: number }) {
   const [width, setWidth] = useState(0);
@@ -28,6 +28,25 @@ function ScoreBar({ score, color, animate, delay }: { score: number; color: stri
   );
 }
 
+type SaveStatus = 'saving' | 'saved' | 'error';
+
+async function saveWithRetry(payload: object, maxRetries = 3): Promise<boolean> {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      const res = await fetch('/api/members', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) return true;
+    } catch {
+      // retry
+    }
+    if (i < maxRetries - 1) await new Promise((r) => setTimeout(r, 1500 * (i + 1)));
+  }
+  return false;
+}
+
 export default function ResultsPage() {
   const router = useRouter();
   const [results, setResults] = useState<AssessmentResults | null>(null);
@@ -35,29 +54,28 @@ export default function ResultsPage() {
   const [animated, setAnimated] = useState(false);
   const [copied, setCopied] = useState(false);
   const [userName, setUserName] = useState('');
-  const [saved, setSaved] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>('saving');
+
+  const doSave = async (r: AssessmentResults) => {
+    const id = localStorage.getItem('sf_user_id');
+    const name = localStorage.getItem('sf_user_name') || '';
+    if (!id || !name) { setSaveStatus('error'); return; }
+
+    setSaveStatus('saving');
+    const ok = await saveWithRetry({ id, name, scores: r.scores, completedAt: r.completedAt });
+    setSaveStatus(ok ? 'saved' : 'error');
+  };
 
   useEffect(() => {
     const r = loadResults();
-    if (!r) {
-      router.push('/');
-      return;
-    }
+    if (!r) { router.push('/'); return; }
     setResults(r);
     setTimeout(() => setAnimated(true), 100);
 
-    // 結果をサーバーに保存
-    const id = localStorage.getItem('sf_user_id');
     const name = localStorage.getItem('sf_user_name') || '';
     setUserName(name);
 
-    if (id && name && !saved) {
-      fetch('/api/members', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, name, scores: r.scores, completedAt: r.completedAt }),
-      }).then(() => setSaved(true)).catch(() => {});
-    }
+    doSave(r);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
@@ -100,6 +118,27 @@ export default function ResultsPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      {/* 保存ステータスバナー */}
+      <div className={`flex items-center justify-center gap-2 py-2 text-sm font-medium transition-all ${
+        saveStatus === 'saving' ? 'bg-blue-500/90 text-white' :
+        saveStatus === 'saved'  ? 'bg-emerald-500/90 text-white' :
+                                   'bg-red-500/90 text-white'
+      }`}>
+        {saveStatus === 'saving' && <><Loader2 size={14} className="animate-spin" />サーバーに保存中...</>}
+        {saveStatus === 'saved'  && <><CheckCircle size={14} />結果を保存しました</>}
+        {saveStatus === 'error'  && (
+          <>
+            <AlertCircle size={14} />保存に失敗しました —
+            <button
+              onClick={() => results && doSave(results)}
+              className="underline hover:no-underline ml-1"
+            >
+              再試行
+            </button>
+          </>
+        )}
+      </div>
+
       {/* Header */}
       <div style={{ background: 'linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)' }} className="px-4 py-16 text-center">
         <div className="mb-4 flex justify-center">
